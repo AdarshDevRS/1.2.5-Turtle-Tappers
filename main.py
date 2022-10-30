@@ -1,4 +1,5 @@
 #--- Imports ---#
+from socket import getfqdn
 import turtle as trtl
 import random as rand
 
@@ -15,6 +16,7 @@ turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "C
 
 #--- Variables ---#
 cash = 0
+multiplier = 1 # player can upgrade variable so player can earn more cash per click.
 
 
 #--- Functions ---#
