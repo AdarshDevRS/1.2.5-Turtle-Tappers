@@ -20,7 +20,17 @@ multiplier = 1 # player can upgrade variable so player can earn more cash per cl
 
 
 #--- Functions ---#
+def randomSpawn():
+    pass
 
+def gainCash():
+    pass
+
+def writeCash():
+    pass
+
+def multiplier():
+    return # Multiplier
 
 
 #--- Events ---#
