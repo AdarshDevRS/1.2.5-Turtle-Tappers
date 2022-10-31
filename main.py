@@ -23,6 +23,7 @@ turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "C
 cash = 0
 multiplier = 1 # player can upgrade variable so player can earn more cash per click.
 
+multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. This will increment to a higher price when player buys upgrade.
 
 #--- Functions ---#
 
@@ -47,11 +48,11 @@ def gainCash():
     writeCash(cash) # Writing the cash after player gets it.
 
 def writeCash(cash):
-    #stringCash = tostring(cash)
     cashTurtle.clear()
-    cashTurtle.write(arg=("Total cash: ",cash),font=("Ariel", 20, "normal"))
+    cashTurtle.write(arg=("Total cash: "+str(cash)),font=("Ariel", 20, "normal"))
 
-def getMultiplier():
+def updateMultiplier():
+    global multiplier
     return # Multiplier
 
 
