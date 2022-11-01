@@ -1,10 +1,14 @@
 #--- Imports ---#
+from audioop import mul
+from functools import update_wrapper
 import turtle as trtl
 import random as rand
 
 #--- Creating objects ---# 
 clickTurtle = trtl.Turtle() # This turtle will be the turtle the player needs to click to get cash.
 cashTurtle = trtl.Turtle() # This turtle shows how much cash total cash the player has.
+upgradeMultiplierTurtle = trtl.Turtle()
+showMultiplierStats = trtl.Turtle()
 
 #--- Config ---#
 clickTurtle.shape("circle")
@@ -15,6 +19,11 @@ cashTurtle.penup()
 cashTurtle.hideturtle()
 cashTurtle.goto(-80, 300)
 cashTurtle.pendown()
+
+upgradeMultiplierTurtle.penup()
+upgradeMultiplierTurtle.goto(150, 0)
+upgradeMultiplierTurtle.shape("circle")
+upgradeMultiplierTurtle.pendown()
 
 turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "Cyan"] # The colors the clickTurtle will appear in. (randomly)
 
@@ -44,20 +53,29 @@ def randomSpawn():
 
 def gainCash():
     global cash
-    cash += 1
+    global multiplier
+    cash += multiplier
     writeCash(cash) # Writing the cash after player gets it.
 
 def writeCash(cash):
     cashTurtle.clear()
     cashTurtle.write(arg=("Total cash: "+str(cash)),font=("Ariel", 20, "normal"))
 
-def updateMultiplier():
+def updateMultiplier(x, y):
     global multiplier
-    return # Multiplier
+    global multiplierUpgradePrice
+    global cash
 
+    if cash >= multiplierUpgradePrice:
+        print("player has requirments")
+        cash -= multiplierUpgradePrice
+        multiplier *= 2
+        multiplierUpgradePrice *= 3
+        writeCash(cash)
 
 #--- Events ---#
 clickTurtle.onclick(click)
+upgradeMultiplierTurtle.onclick(updateMultiplier)
 
 wn = trtl.Screen()
 wn.mainloop()
