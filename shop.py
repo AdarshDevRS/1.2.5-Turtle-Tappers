@@ -1,22 +1,20 @@
 # This module will be used in main.py
 
-import turtle as trtl
-
-
 #--- Variables ---#
-x = 0
-y = 0
+x = -200
+y = -100
 
-#--- Functions ---#
-def buyTurtle1(cash):
-    pass
+t1Price = 20
+t2Price = 200
+t3Price = 1000
 
-def buyTurtle2(cash):
-    pass
-
-def buyTurtle3(cash):
-    pass
-
-def moveTurtle():
+def initTurtle(turtle1, turtle2, turtle3): # Initiates the turtle cosmetics
     global x 
     global y
+
+    turtles = [turtle1, turtle2, turtle3]
+    for t in turtles:
+        t.penup()
+        t.goto(x, y)
+        t.pendown()
+        x+= 50

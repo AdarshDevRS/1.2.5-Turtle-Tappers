@@ -35,9 +35,9 @@ showMultiplierStats.hideturtle()
 showMultiplierStats.goto(-60, 270)
 showMultiplierStats.pendown()
 
-turtle1.shape("Circle") # Cosmetics
-turtle2.shape("Square")
-turtle3.shape("Triangle")
+turtle1.shape("circle") # Cosmetics
+turtle2.shape("square")
+turtle3.shape("triangle")
 
 #--
 turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "Cyan"] # The colors the clickTurtle will appear in. (randomly)
@@ -96,13 +96,37 @@ def writeMultiplier(multiplier):
     showMultiplierStats.clear()
     showMultiplierStats.write(arg=("Total multiplier: "+str(multiplier)+"x"), font=("Ariel", 10, "bold"))
 
+
+def buyTurtle1(x, y): # buying the turtles
+    global cash
+    if cash >= shop.t1Price:
+        print("Bought t1")
+        cash -= shop.t1Price
+
+def buyTurtle2(x, y):
+    global cash
+    if cash >= shop.t2Price:
+        print("Bought t2")
+        cash -= shop.t2Price
+
+
+def buyTurtle3(x, y):
+    global cash
+    if cash >= shop.t3Price:
+        print("Bought t3")
+        cash -= shop.t3Price
+
+
+#-- Function calls ---#
+shop.initTurtle(turtle1, turtle2, turtle3) # Turtles appear and move to their correct positions.
+
 #--- Events ---#
 clickTurtle.onclick(click)
 upgradeMultiplierTurtle.onclick(updateMultiplier)
 
-turtle1.onclick(shop.buyTurtle1)
-turtle2.onclick(shop.buyTurtle2)
-turtle3.onclick(shop.buyTurtle3)
+turtle1.onclick(buyTurtle1)
+turtle2.onclick(buyTurtle2)
+turtle3.onclick(buyTurtle3)
 
 wn = trtl.Screen()
 wn.mainloop()
