@@ -102,12 +102,14 @@ def buyTurtle1(x, y): # buying the turtles
     if cash >= shop.t1Price:
         print("Bought t1")
         cash -= shop.t1Price
+        turtle1.hideturtle()
 
 def buyTurtle2(x, y):
     global cash
     if cash >= shop.t2Price:
         print("Bought t2")
         cash -= shop.t2Price
+        turtle2.hideturtle()
 
 
 def buyTurtle3(x, y):
@@ -115,6 +117,7 @@ def buyTurtle3(x, y):
     if cash >= shop.t3Price:
         print("Bought t3")
         cash -= shop.t3Price
+        turtle3.hideturtle()
 
 
 #-- Function calls ---#
