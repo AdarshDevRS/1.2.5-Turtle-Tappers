@@ -1,3 +1,5 @@
+#// All images used are by me. I have created them using my own code.
+
 #--- Imports ---#
 import turtle as trtl
 import random as rand
@@ -6,12 +8,13 @@ import shop # The python file I have created which handles the shop/cosmetics.
 
 
 #--- Setup ---#
-ladybugImage = "1.2.5-Turtle-Tappers/ladybug.gif" # Store the file name of your shape
+ladybugImage = "1.2.5-Turtle-Tappers/ladybug.gif" # The images 
 spiderImage = "1.2.5-Turtle-Tappers/spider.gif"
 
 images = [ladybugImage, spiderImage]
 
 wn = trtl.Screen()
+
 wn.addshape(ladybugImage) # Make the screen aware of the new filea
 wn.addshape(spiderImage)
 
@@ -64,8 +67,8 @@ turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "C
 cash = 0
 multiplier = 1 # player can upgrade variable so player can earn more cash per click.
 
-timer = 1 # Player will have 1 seconds to click the thing. Else, the shape will move to a different location.
-timerInterval = 750 # 1000 milliseconds in 1 second
+timer = 2 # Player will have 1 seconds to click the thing. Else, the shape will move to a different location.
+timerInterval = 1000 # 1000 milliseconds in 1 second
 
 multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. This will increment to a higher price when player buys upgrade.
 
@@ -96,7 +99,7 @@ def countdown():
     timerTurtle.clear()
     if timer <= 0:
         timerTurtle.write("Timer: " + str(timer), font=("Ariel", 20, "bold"), align="center")
-        timer = 1
+        timer = 2
         timerTurtle.getscreen().ontimer(countdown, timerInterval)
         randomSpawn()
     else:
