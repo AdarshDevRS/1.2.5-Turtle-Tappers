@@ -1,7 +1,6 @@
 #--- Imports ---#
 import turtle as trtl
 import random as rand
-import timer 
 
 import shop # The python file I have created which handles the shop/cosmetics.
 
@@ -11,21 +10,23 @@ cashTurtle = trtl.Turtle() # This turtle shows how much cash total cash the play
 upgradeMultiplierTurtle = trtl.Turtle()
 showMultiplierStats = trtl.Turtle()
 
+timerTurtle = trtl.Turtle()
+
 turtle1 = trtl.Turtle() # These will be the turtle cosmetics.
 turtle2 = trtl.Turtle()
 turtle3 = trtl.Turtle()
 
 #--- Config ---#
-clickTurtle.shape("circle")
+clickTurtle.shape("circle") # The main clicking turtle
 clickTurtle.shapesize(5)
 clickTurtle.penup()
 
-cashTurtle.penup()
+cashTurtle.penup() # Shows cash
 cashTurtle.hideturtle()
 cashTurtle.goto(-80, 300)
 cashTurtle.pendown()
 
-upgradeMultiplierTurtle.penup()
+upgradeMultiplierTurtle.penup() # Upgrade Multiplier label (shows price)
 upgradeMultiplierTurtle.goto(150, -200)
 upgradeMultiplierTurtle.shapesize(1)
 upgradeMultiplierTurtle.pendown()
@@ -36,9 +37,14 @@ showMultiplierStats.hideturtle()
 showMultiplierStats.goto(-60, 270)
 showMultiplierStats.pendown()
 
+timerTurtle.penup() # TImer Turtle
+timerTurtle.goto(0, 200)
+timerTurtle.hideturtle()
+
 turtle1.shape("circle") # Cosmetics
 turtle2.shape("square")
 turtle3.shape("triangle")
+
 
 #--
 turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "Cyan"] # The colors the clickTurtle will appear in. (randomly)
@@ -47,12 +53,18 @@ turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "C
 cash = 0
 multiplier = 1 # player can upgrade variable so player can earn more cash per click.
 
+timer = 1 # Player will have 2 seconds to click the thing. Else, the shape will move to a different location.
+timerInterval = 750 # 1000 milliseconds in 1 second
+
 multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. This will increment to a higher price when player buys upgrade.
 
 #--- Functions ---#
 def click(x, y):
-    randomSpawn()
+    #randomSpawn()
+    global timer
     gainCash()
+    randomSpawn()
+    timer = 1
 
 def randomSpawn(): 
     randColor = rand.randint(0, 7) # 0 to 7 because the list index starts from 0.
@@ -64,6 +76,20 @@ def randomSpawn():
     clickTurtle.goto(randX, randY)
     clickTurtle.color(turtleColors[randColor])
     clickTurtle.showturtle()
+
+def countdown():
+    global timer
+    timerTurtle.clear()
+    #while True:
+    if timer <= 0:
+        timerTurtle.write("Timer: " + str(timer), font=("Ariel", 20, "bold"), align="center")
+        timer = 1
+        timerTurtle.getscreen().ontimer(countdown, timerInterval)
+        randomSpawn()
+    else:
+        timerTurtle.write("Timer: " + str(timer), font=("Ariel", 20, "bold"), align="center")
+        timer -= 1
+        timerTurtle.getscreen().ontimer(countdown, timerInterval)
 
 def gainCash():
     global cash
@@ -134,5 +160,9 @@ turtle1.onclick(buyTurtle1)
 turtle2.onclick(buyTurtle2)
 turtle3.onclick(buyTurtle3)
 
+
 wn = trtl.Screen()
+
+wn.ontimer(countdown, timerInterval)
+
 wn.mainloop()
