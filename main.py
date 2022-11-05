@@ -1,6 +1,7 @@
 #--- Imports ---#
 import turtle as trtl
 import random as rand
+import timer 
 
 import shop # The python file I have created which handles the shop/cosmetics.
 
@@ -49,12 +50,11 @@ multiplier = 1 # player can upgrade variable so player can earn more cash per cl
 multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. This will increment to a higher price when player buys upgrade.
 
 #--- Functions ---#
-
 def click(x, y):
     randomSpawn()
     gainCash()
 
-def randomSpawn():
+def randomSpawn(): 
     randColor = rand.randint(0, 7) # 0 to 7 because the list index starts from 0.
 
     randX = rand.randint(-200, 200)
@@ -96,13 +96,14 @@ def writeMultiplier(multiplier):
     showMultiplierStats.clear()
     showMultiplierStats.write(arg=("Total multiplier: "+str(multiplier)+"x"), font=("Ariel", 10, "bold"))
 
-
+    print("HIEHIEAHFIOEAHOFHAOFHOAHEOUEHkfhfi##@@(#*FEHDSUF")
 def buyTurtle1(x, y): # buying the turtles
     global cash
     if cash >= shop.t1Price:
         print("Bought t1")
         cash -= shop.t1Price
         turtle1.hideturtle()
+        shop.t1PriceTurtle.clear() # Making the price disappear when player buys the cosmetic.
 
 def buyTurtle2(x, y):
     global cash
@@ -110,6 +111,7 @@ def buyTurtle2(x, y):
         print("Bought t2")
         cash -= shop.t2Price
         turtle2.hideturtle()
+        shop.t2PriceTurtle.clear()
 
 
 def buyTurtle3(x, y):
@@ -118,10 +120,11 @@ def buyTurtle3(x, y):
         print("Bought t3")
         cash -= shop.t3Price
         turtle3.hideturtle()
+        shop.t3PriceTurtle.clear() 
 
 
 #-- Function calls ---#
-shop.initTurtle(turtle1, turtle2, turtle3) # Turtles appear and move to their correct positions.
+shop.initShopTurtles(turtle1, turtle2, turtle3) # Turtles appear and move to their correct positions.
 
 #--- Events ---#
 clickTurtle.onclick(click)
