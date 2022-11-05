@@ -4,6 +4,17 @@ import random as rand
 
 import shop # The python file I have created which handles the shop/cosmetics.
 
+
+#--- Setup ---#
+ladybugImage = "1.2.5-Turtle-Tappers/ladybug.gif" # Store the file name of your shape
+spiderImage = "1.2.5-Turtle-Tappers/spider.gif"
+
+images = [ladybugImage, spiderImage]
+
+wn = trtl.Screen()
+wn.addshape(ladybugImage) # Make the screen aware of the new filea
+wn.addshape(spiderImage)
+
 #--- Creating objects ---# 
 clickTurtle = trtl.Turtle() # This turtle will be the turtle the player needs to click to get cash.
 cashTurtle = trtl.Turtle() # This turtle shows how much cash total cash the player has.
@@ -17,7 +28,7 @@ turtle2 = trtl.Turtle()
 turtle3 = trtl.Turtle()
 
 #--- Config ---#
-clickTurtle.shape("circle") # The main clicking turtle
+clickTurtle.shape(ladybugImage) # The main clicking turtle
 clickTurtle.shapesize(5)
 clickTurtle.penup()
 
@@ -60,6 +71,7 @@ multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. T
 
 #--- Functions ---#
 def click(x, y):
+    print("Clicked")
     global timer
     gainCash()
     randomSpawn()
@@ -67,6 +79,7 @@ def click(x, y):
 
 def randomSpawn(): 
     randColor = rand.randint(0, 7) # 0 to 7 because the list index starts from 0.
+    randImage = rand.randint(0,1)
 
     randX = rand.randint(-200, 200)
     randY = rand.randint(-20, 20)
@@ -74,12 +87,13 @@ def randomSpawn():
     clickTurtle.hideturtle()
     clickTurtle.goto(randX, randY)
     clickTurtle.color(turtleColors[randColor])
+    clickTurtle.shape(images[randImage])
+    clickTurtle.shapesize(100)
     clickTurtle.showturtle()
 
 def countdown():
     global timer
     timerTurtle.clear()
-    #while True:
     if timer <= 0:
         timerTurtle.write("Timer: " + str(timer), font=("Ariel", 20, "bold"), align="center")
         timer = 1
@@ -121,7 +135,6 @@ def writeMultiplier(multiplier):
     showMultiplierStats.clear()
     showMultiplierStats.write(arg=("Total multiplier: "+str(multiplier)+"x"), font=("Ariel", 10, "bold"))
 
-    print("HIEHIEAHFIOEAHOFHAOFHOAHEOUEHkfhfi##@@(#*FEHDSUF")
 def buyTurtle1(x, y): # buying the turtles
     global cash
     if cash >= shop.t1Price:
@@ -159,9 +172,9 @@ turtle1.onclick(buyTurtle1)
 turtle2.onclick(buyTurtle2)
 turtle3.onclick(buyTurtle3)
 
-
-wn = trtl.Screen()
-
 wn.ontimer(countdown, timerInterval)
+
+wn.listen() # listens for the event
+wn.update() # Updating 
 
 wn.mainloop()
