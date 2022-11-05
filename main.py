@@ -53,18 +53,17 @@ turtleColors = ["Purple", "Blue", "Red", "Green", "Yellow", "Black", "Brown", "C
 cash = 0
 multiplier = 1 # player can upgrade variable so player can earn more cash per click.
 
-timer = 1 # Player will have 2 seconds to click the thing. Else, the shape will move to a different location.
+timer = 1 # Player will have 1 seconds to click the thing. Else, the shape will move to a different location.
 timerInterval = 750 # 1000 milliseconds in 1 second
 
 multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. This will increment to a higher price when player buys upgrade.
 
 #--- Functions ---#
 def click(x, y):
-    #randomSpawn()
     global timer
     gainCash()
     randomSpawn()
-    timer = 1
+    timer = 1 # setting timer back to 1 when clicked.
 
 def randomSpawn(): 
     randColor = rand.randint(0, 7) # 0 to 7 because the list index starts from 0.
