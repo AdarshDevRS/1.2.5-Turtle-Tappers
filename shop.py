@@ -12,7 +12,7 @@ t3PriceTurtle = trtl.Turtle()
 
 #--- Config ---#
 
-x = -300
+x = -600 # The starting coordinates the shop turtles go to.
 y = -250
 
 t1Price = 20
@@ -33,15 +33,15 @@ def initShopTurtles(turtle1, turtle2, turtle3): # Initiates the turtle cosmetics
     showShopSection()
     showPriceTurtle()
 
-def showShopSection():
+def showShopSection(): # Shows the label "Buy cosmetics"
     shopSection.penup()
     shopSection.goto(x-200, y+40)
     shopSection.pendown()
     shopSection.write("Buy cosmetics!", font=("Ariel", 20, "bold"), align="center")
     shopSection.hideturtle()
 
-def showPriceTurtle():
-    priceX = -300 # Same things as global x variable to position the price label correctly.
+def showPriceTurtle(): 
+    priceX = -600 # Same things as global x variable to position the price label correctly.
     priceY = (-250) - 50
 
     t1PriceTurtle.penup()

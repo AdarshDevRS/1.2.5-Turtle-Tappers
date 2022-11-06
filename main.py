@@ -1,4 +1,5 @@
 #// All images used are by me. I have created them using my own code.
+#// IF you use this code, your python turtle canvas might be smaller or bigger! Change as needed.
 
 #--- Imports ---#
 import turtle as trtl
@@ -35,26 +36,28 @@ clickTurtle.shape(ladybugImage) # The main clicking turtle
 clickTurtle.shapesize(5)
 clickTurtle.penup()
 
+#-- 
 cashTurtle.penup() # Shows cash
 cashTurtle.hideturtle()
 cashTurtle.goto(-80, 300)
-cashTurtle.pendown()
 
+#--
 upgradeMultiplierTurtle.penup() # Upgrade Multiplier label (shows price)
-upgradeMultiplierTurtle.goto(150, -200)
+upgradeMultiplierTurtle.goto(350, -200)
 upgradeMultiplierTurtle.shapesize(1)
-upgradeMultiplierTurtle.pendown()
 upgradeMultiplierTurtle.write("Click here to upgrade multiplier to earn cash faster!", font=("Ariel", 10, "bold"))
 
+#-- 
 showMultiplierStats.penup()
 showMultiplierStats.hideturtle()
 showMultiplierStats.goto(-60, 270)
-showMultiplierStats.pendown()
 
+#--
 timerTurtle.penup() # TImer Turtle
 timerTurtle.goto(0, 200)
 timerTurtle.hideturtle()
 
+#--
 turtle1.shape("circle") # Cosmetics
 turtle2.shape("square")
 turtle3.shape("triangle")
@@ -74,17 +77,16 @@ multiplierUpgradePrice = 10 # The price that the multiplier upgrade will cost. T
 
 #--- Functions ---#
 def click(x, y):
-    print("Clicked")
     global timer
     gainCash()
     randomSpawn()
-    timer = 1 # setting timer back to 1 when clicked.
+    timer = 2 # setting timer back to 1 when clicked.
 
 def randomSpawn(): 
-    randColor = rand.randint(0, 7) # 0 to 7 because the list index starts from 0.
-    randImage = rand.randint(0,1)
+    randColor = rand.randint(0, 7) # 0 to 7 because the turtle colors list index starts from 0.
+    randImage = rand.randint(0,1) # 0 to 1 because the turtle inmage list index starts from 0 to 1
 
-    randX = rand.randint(-200, 200)
+    randX = rand.randint(-200, 200) 
     randY = rand.randint(-20, 20)
 
     clickTurtle.hideturtle()
@@ -94,7 +96,7 @@ def randomSpawn():
     clickTurtle.shapesize(100)
     clickTurtle.showturtle()
 
-def countdown():
+def countdown(): # Timer system where if player does not click the turtle fast enough, it will move to another random position.
     global timer
     timerTurtle.clear()
     if timer <= 0:
@@ -138,30 +140,31 @@ def writeMultiplier(multiplier):
     showMultiplierStats.clear()
     showMultiplierStats.write(arg=("Total multiplier: "+str(multiplier)+"x"), font=("Ariel", 10, "bold"))
 
+#-- 
 def buyTurtle1(x, y): # buying the turtles
     global cash
     if cash >= shop.t1Price:
-        print("Bought t1")
         cash -= shop.t1Price
         turtle1.hideturtle()
         shop.t1PriceTurtle.clear() # Making the price disappear when player buys the cosmetic.
+        writeCash() # Updating cash label
 
 def buyTurtle2(x, y):
     global cash
     if cash >= shop.t2Price:
-        print("Bought t2")
         cash -= shop.t2Price
         turtle2.hideturtle()
         shop.t2PriceTurtle.clear()
+        writeCash()
 
 
 def buyTurtle3(x, y):
     global cash
     if cash >= shop.t3Price:
-        print("Bought t3")
         cash -= shop.t3Price
         turtle3.hideturtle()
         shop.t3PriceTurtle.clear() 
+        writeCash()
 
 
 #-- Function calls ---#
@@ -169,13 +172,13 @@ shop.initShopTurtles(turtle1, turtle2, turtle3) # Turtles appear and move to the
 
 #--- Events ---#
 clickTurtle.onclick(click)
-upgradeMultiplierTurtle.onclick(updateMultiplier)
+upgradeMultiplierTurtle.onclick(updateMultiplier) # Upgrading
 
 turtle1.onclick(buyTurtle1)
 turtle2.onclick(buyTurtle2)
 turtle3.onclick(buyTurtle3)
 
-wn.ontimer(countdown, timerInterval)
+wn.ontimer(countdown, timerInterval) # Timer
 
 wn.listen() # listens for the event
 wn.update() # Updating 
