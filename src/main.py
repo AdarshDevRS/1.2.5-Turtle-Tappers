@@ -126,7 +126,6 @@ def updateMultiplier(x, y):
     global cash
 
     if cash >= multiplierUpgradePrice:
-        print("player has requirments")
         cash -= multiplierUpgradePrice
         multiplier *= 2
         multiplierUpgradePrice *= 3
@@ -147,7 +146,7 @@ def buyTurtle1(x, y): # buying the turtles
         cash -= shop.t1Price
         turtle1.hideturtle()
         shop.t1PriceTurtle.clear() # Making the price disappear when player buys the cosmetic.
-        writeCash() # Updating cash label
+        writeCash(cash) # Updating cash label
 
 def buyTurtle2(x, y):
     global cash
@@ -155,7 +154,7 @@ def buyTurtle2(x, y):
         cash -= shop.t2Price
         turtle2.hideturtle()
         shop.t2PriceTurtle.clear()
-        writeCash()
+        writeCash(cash)
 
 
 def buyTurtle3(x, y):
@@ -164,7 +163,7 @@ def buyTurtle3(x, y):
         cash -= shop.t3Price
         turtle3.hideturtle()
         shop.t3PriceTurtle.clear() 
-        writeCash()
+        writeCash(cash)
 
 
 #-- Function calls ---#
