@@ -43,7 +43,7 @@ cashTurtle.goto(-80, 300)
 
 #--
 upgradeMultiplierTurtle.penup() # Upgrade Multiplier label (shows price)
-upgradeMultiplierTurtle.goto(350, -200)
+upgradeMultiplierTurtle.goto(300, -200)
 upgradeMultiplierTurtle.shapesize(1)
 upgradeMultiplierTurtle.write("Click here to upgrade multiplier to earn cash faster!", font=("Ariel", 10, "bold"))
 
